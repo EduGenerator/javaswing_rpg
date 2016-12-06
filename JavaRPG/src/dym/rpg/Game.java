@@ -14,10 +14,13 @@ import dym.rpg.entities.player.Menu;
 import dym.rpg.entities.player.Player;
 import dym.rpg.graphics.Image;
 import dym.rpg.graphics.Sprite;
+import dym.rpg.graphics.staticImages.UIMainMenu;
 import dym.rpg.graphics.staticImages.UIMenu;
 import dym.rpg.graphics.staticImages.UIMenuInventoryButton;
 import dym.rpg.graphics.staticImages.UIMenuPartyButton;
 import dym.rpg.graphics.staticImages.UIMenuSettingsButton;
+import dym.rpg.graphics.staticImages.UINewGame_S;
+import dym.rpg.graphics.staticImages.UINewGame_U;
 import dym.rpg.graphics.staticSprites.SprCharD;
 import dym.rpg.graphics.staticSprites.SprCharL;
 import dym.rpg.graphics.staticSprites.SprCharR;
@@ -50,6 +53,10 @@ public class Game extends JFrame {
 	public static UIMenuInventoryButton uiMenuInventory = new UIMenuInventoryButton(); 
 	public static UIMenuSettingsButton uiMenuSettings = new UIMenuSettingsButton(); 
 	public static UIArrow uiMenuArrow = new UIArrow(); 
+	public static UIMainMenu uiMainMenu = new UIMainMenu();
+	public static UINewGame_S uiNG_s = new UINewGame_S();
+	public static UINewGame_U uiNG_u = new UINewGame_U();
+
 	//public static TestMusic testMusic;
 	//public static TestSFX testSFX;
 	
