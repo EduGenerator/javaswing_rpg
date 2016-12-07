@@ -13,9 +13,9 @@ import dym.rpg.scene.Scene;
 import dym.rpg.scene.SceneManager;
 
 public class MainMenuHandler extends Entity {
-	public static final int menuButtons = 2;
+	public static final int menuButtons = 	1;
 	private static int arrowlocation; 
-	public static final Scene[] selectionDestinations = {SceneManager.currentScene, SceneManager.currentScene, SceneManager.settings};
+	public static final Scene[] selectionDestinations = {SceneManager.testScene1};
 
 
 	public MainMenuHandler() {
@@ -24,6 +24,15 @@ public class MainMenuHandler extends Entity {
 				arrowlocation = 13;
 	}
 	
+	/*private static Scene dispose() {
+		// TODO Auto-generated method stub
+		dispose();
+		System.out.println("DONE");
+		System.exit (0);
+		return null;
+		
+	}
+*/
 	public void resetSelection() {
 		arrowlocation = 13;
 	}
@@ -41,11 +50,10 @@ public class MainMenuHandler extends Entity {
 		}
 		
 		if (Input.keysDown.contains(KeyEvent.VK_UP)) {
-			//Move arrow down
-			if (arrowlocation<13+20*(menuButtons-1)) {
-				arrowlocation+=20;
-				}
-				
+			//Move arrow up
+			if (arrowlocation>13) {
+				arrowlocation-=20;
+			}
 			Input.keysDown.remove((Object)KeyEvent.VK_UP);
 		}
 		
@@ -61,8 +69,6 @@ public class MainMenuHandler extends Entity {
 		
 		if (Input.keysDown.contains(KeyEvent.VK_ENTER)){
 			SceneManager.gotoScene(selectionDestinations[(int)((arrowlocation-13)/20)]);
-			Game.p.menu = false;
-			Game.p.busy = false;
 			Input.keysDown.remove((Object)KeyEvent.VK_ENTER);
 		}
 	}
@@ -70,6 +76,8 @@ public class MainMenuHandler extends Entity {
 	@Override
 	public void draw(Graphics g) {
 		Game.uiMainMenu.drawUI(g, 0, 0);
-		Game.uiNG_u.drawUI(g, 500, 300);
+		Game.uiNG_u.drawUI(g, 23, 4);
+		Game.uiEx.drawUI(g, 23, 150);
+		Game.uiMenuArrow.drawUI(g, 20, arrowlocation);
 	}
 }

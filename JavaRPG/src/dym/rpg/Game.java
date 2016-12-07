@@ -15,6 +15,7 @@ import dym.rpg.entities.player.Player;
 import dym.rpg.graphics.Image;
 import dym.rpg.graphics.Sprite;
 import dym.rpg.graphics.staticImages.UIMainMenu;
+import dym.rpg.graphics.staticImages.UIMainMenu_ez_exit;
 import dym.rpg.graphics.staticImages.UIMenu;
 import dym.rpg.graphics.staticImages.UIMenuInventoryButton;
 import dym.rpg.graphics.staticImages.UIMenuPartyButton;
@@ -56,6 +57,7 @@ public class Game extends JFrame {
 	public static UIMainMenu uiMainMenu = new UIMainMenu();
 	public static UINewGame_S uiNG_s = new UINewGame_S();
 	public static UINewGame_U uiNG_u = new UINewGame_U();
+	public static UIMainMenu_ez_exit uiEx = new UIMainMenu_ez_exit();
 
 	//public static TestMusic testMusic;
 	//public static TestSFX testSFX;

@@ -11,7 +11,7 @@ public class SceneManager {
 	public static SettingsScreen settings = new SettingsScreen();
 	public static MainMenu mainMenu = new MainMenu();
 	
-	public static Scene currentScene = testScene1;
+	public static Scene currentScene = mainMenu;
 	public static Scene prevScene = currentScene;
 	public static void gotoScene(Scene s) {
 		prevScene = currentScene;
