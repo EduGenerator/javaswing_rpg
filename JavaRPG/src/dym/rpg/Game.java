@@ -16,17 +16,21 @@ import dym.rpg.graphics.Image;
 import dym.rpg.graphics.Sprite;
 import dym.rpg.graphics.staticImages.UIMainMenu;
 import dym.rpg.graphics.staticImages.UIMainMenu_ez_exit;
+import dym.rpg.graphics.staticImages.UIClock;
 import dym.rpg.graphics.staticImages.UIMenu;
 import dym.rpg.graphics.staticImages.UIMenuInventoryButton;
 import dym.rpg.graphics.staticImages.UIMenuPartyButton;
 import dym.rpg.graphics.staticImages.UIMenuSettingsButton;
 import dym.rpg.graphics.staticImages.UINewGame_S;
 import dym.rpg.graphics.staticImages.UINewGame_U;
+import dym.rpg.graphics.staticImages.UITextBox;
 import dym.rpg.graphics.staticSprites.SprCharD;
 import dym.rpg.graphics.staticSprites.SprCharL;
 import dym.rpg.graphics.staticSprites.SprCharR;
 import dym.rpg.graphics.staticSprites.SprCharU;
 import dym.rpg.graphics.staticSprites.UIArrow;
+import dym.rpg.graphics.staticSprites.UIXButton;
+import dym.rpg.graphics.text.DefaultFont;
 import dym.rpg.physics.Vector2;
 import dym.rpg.scene.SceneManager;
 import dym.rpg.sound.SoundMixer;
@@ -59,6 +63,9 @@ public class Game extends JFrame {
 	public static UINewGame_U uiNG_u = new UINewGame_U();
 	public static UIMainMenu_ez_exit uiEx = new UIMainMenu_ez_exit();
 
+	public static UIXButton uiXButton = new UIXButton(); 
+	public static UITextBox uiTextBox = new UITextBox(); 
+	public static UIClock uiClock = new UIClock(); 
 	//public static TestMusic testMusic;
 	//public static TestSFX testSFX;
 	
@@ -68,6 +75,7 @@ public class Game extends JFrame {
 	public Game() {
 		super("Game");
 		SoundMixer.init();
+		DefaultFont.init();
 		this.setBackground(Color.BLACK);
 		
 		//testMusic = new TestMusic();
@@ -109,6 +117,7 @@ public class Game extends JFrame {
 	
 	public static void loop() {
 		try {
+			MessageHandler.update();
 			if (!SceneManager.currentScene.menuScene) {
 				camera.x = p.bbox.x-160+8;
 				camera.y = p.bbox.y-120+8;

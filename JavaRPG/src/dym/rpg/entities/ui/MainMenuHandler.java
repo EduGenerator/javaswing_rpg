@@ -13,7 +13,7 @@ import dym.rpg.scene.Scene;
 import dym.rpg.scene.SceneManager;
 
 public class MainMenuHandler extends Entity {
-	public static final int menuButtons = 	1;
+	public static final int menuButtons = 	2;
 	private static int arrowlocation; 
 	public static final Scene[] selectionDestinations = {SceneManager.testScene1};
 
@@ -67,9 +67,11 @@ public class MainMenuHandler extends Entity {
 			Input.keysDown.remove((Object)KeyEvent.VK_DOWN);
 		}
 		
-		if (Input.keysDown.contains(KeyEvent.VK_ENTER)){
+		if (Input.keysDown.contains(KeyEvent.VK_X)){
+			//System.exit(0);
+			
 			SceneManager.gotoScene(selectionDestinations[(int)((arrowlocation-13)/20)]);
-			Input.keysDown.remove((Object)KeyEvent.VK_ENTER);
+			Input.keysDown.remove((Object)KeyEvent.VK_X);
 		}
 	}
 	
