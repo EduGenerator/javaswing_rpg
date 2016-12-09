@@ -16,6 +16,7 @@ import dym.rpg.graphics.Image;
 import dym.rpg.graphics.Sprite;
 import dym.rpg.graphics.staticImages.UIMainMenu;
 import dym.rpg.graphics.staticImages.UIMainMenu_ez_exit;
+import dym.rpg.graphics.staticImages.UIAreUSure;
 import dym.rpg.graphics.staticImages.UIClock;
 import dym.rpg.graphics.staticImages.UIMenu;
 import dym.rpg.graphics.staticImages.UIMenuInventoryButton;
@@ -30,6 +31,7 @@ import dym.rpg.graphics.staticSprites.SprCharR;
 import dym.rpg.graphics.staticSprites.SprCharU;
 import dym.rpg.graphics.staticSprites.UIArrow;
 import dym.rpg.graphics.staticSprites.UIXButton;
+import dym.rpg.graphics.text.ClockText;
 import dym.rpg.graphics.text.DefaultFont;
 import dym.rpg.physics.Vector2;
 import dym.rpg.scene.SceneManager;
@@ -62,6 +64,7 @@ public class Game extends JFrame {
 	public static UINewGame_S uiNG_s = new UINewGame_S();
 	public static UINewGame_U uiNG_u = new UINewGame_U();
 	public static UIMainMenu_ez_exit uiEx = new UIMainMenu_ez_exit();
+	public static UIAreUSure preEx = new UIAreUSure();
 
 	public static UIXButton uiXButton = new UIXButton(); 
 	public static UITextBox uiTextBox = new UITextBox(); 
@@ -76,6 +79,7 @@ public class Game extends JFrame {
 		super("Game");
 		SoundMixer.init();
 		DefaultFont.init();
+		ClockText.init();
 		this.setBackground(Color.BLACK);
 		
 		//testMusic = new TestMusic();
