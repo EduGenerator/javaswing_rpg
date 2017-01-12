@@ -40,6 +40,7 @@ import dym.rpg.scene.SceneManager;
 import dym.rpg.sound.SoundMixer;
 //import dym.rpg.sound.staticSounds.TestMusic;
 //import dym.rpg.sound.staticSounds.TestSFX;
+import dym.rpg.tile.Tiles;
 
 public class Game extends JFrame {
 	private static final long serialVersionUID = 665457190433165744L;
@@ -82,6 +83,7 @@ public class Game extends JFrame {
 		SoundMixer.init();
 		DefaultFont.init();
 		ClockText.init();
+		Tiles.init();
 		LightingHandler.init();
 		this.setBackground(Color.BLACK);
 		

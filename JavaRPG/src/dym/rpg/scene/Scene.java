@@ -7,6 +7,7 @@ import dym.rpg.entities.Entity;
 import dym.rpg.graphics.shading.Light;
 import dym.rpg.physics.CollisionMap;
 import dym.rpg.tile.TileMap;
+import dym.rpg.tile.Tiles;
 
 public abstract class Scene {
 	public TileMap tileMap;
@@ -31,7 +32,7 @@ public abstract class Scene {
 		entities = new ArrayList<Entity>();
 		lights = new ArrayList<Light>();
 		//TODO: LOAD SCENE DATA FROM FILE
-		
+	// returns tile	Tiles.tiles.get(string)   SEE TILES.INIT();
 	}
 	public Scene(boolean menuScene) {
 		this();

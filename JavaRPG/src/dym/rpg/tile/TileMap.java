@@ -17,6 +17,18 @@ public class TileMap {
 		decalTiles = new ArrayList<Tile>();
 		camera = new Rect(0,0,320,240);
 	}
+	public void drawTilesEditor(Graphics g) {
+		for (Tile t : backTiles) {
+				t.drawEditor(g);
+		}
+		for (Tile t : mainTiles) {
+			t.drawEditor(g);
+		}
+		for (Tile t : decalTiles) {
+			t.drawEditor(g);
+		}
+	}
+	
 	public void drawTiles(Graphics g) {
 		camera.x=Game.camera.x;
 		camera.y=Game.camera.y;

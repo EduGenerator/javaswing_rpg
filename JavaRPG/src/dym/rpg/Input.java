@@ -21,8 +21,8 @@ public class Input implements KeyListener, MouseListener{
 	};
 	public static AxisState axisState;
 	public Input() {
-		keysDown = new ArrayList<Integer>();
-		mouseDown = new ArrayList<Integer>();
+		Input.keysDown = new ArrayList<Integer>();
+		Input.mouseDown = new ArrayList<Integer>();
 	}
 
 	public void click(int x, int y) {

@@ -20,4 +20,9 @@ public class Tile extends Entity {
 		g.setColor(Color.WHITE);
 		image.draw(g, (int)pos.x, (int)pos.y);
 	}
+
+	public void drawEditor(Graphics g) {
+		g.setColor(Color.WHITE);
+		image.drawEditor(g, (int)pos.x, (int)pos.y);
+	}
 }

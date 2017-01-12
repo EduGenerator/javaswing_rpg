@@ -13,7 +13,11 @@ import dym.rpg.scene.Scene;
 import dym.rpg.scene.SceneManager;
 
 public class MainMenuHandler extends Entity {
-	public static final int menuButtons = 	2;
+/* The second menu button is broken, and we do not know why at the moment. Work is being done, but it is no longer
+ * top priority for us. We would rather have an actual game than UI, despite UI being really sexy.
+ */
+	
+	public static final int menuButtons = 	1;
 	private static int arrowlocation; 
 	public static final Scene[] selectionDestinations = {SceneManager.testScene1, SceneManager.preX};
 

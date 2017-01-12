@@ -13,7 +13,7 @@ public class TestClick extends Entity {
 	@Override
 	public void click() {
 		
-		System.exit(0);
-		//SceneManager.currentScene = SceneManager.testScene1;
+		
+		SceneManager.currentScene = SceneManager.testScene1;
 	}
 }
