@@ -19,7 +19,7 @@ public class MainMenuHandler extends Entity {
 	
 	public static final int menuButtons = 	1;
 	private static int arrowlocation; 
-	public static final Scene[] selectionDestinations = {SceneManager.testScene1, SceneManager.preX};
+	public static final Scene[] selectionDestinations = {SceneManager.testScene2, SceneManager.preX};
 
 
 	public MainMenuHandler() {

@@ -8,10 +8,20 @@ import dym.rpg.graphics.Image;
 import dym.rpg.physics.Vector2;
 
 public class Tile extends Entity {
+	String name;
 	private Image image;
-	public Tile(Vector2 pos, Image image) {
+	public Tile(Vector2 pos, Image image, String name) {
 		super(pos);
 		this.image = image;
+		this.name = name;
+	}public Tile(Vector2 pos, Image image) {
+		super(pos);
+		this.image = image;
+		this.name = "no";
+		
+	}
+	public String getName(){
+		return name;
 	}
 	@Override
 	public void update() {}

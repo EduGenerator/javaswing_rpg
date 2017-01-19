@@ -17,12 +17,12 @@ public class Tiles {
 	public static HashMap<String, Image> tiles = new HashMap<String, Image>();
 	
 	public static void init() {
-		tiles.put("grass1", tile_grass1);
-		tiles.put("grass1", tile_rock);
-		tiles.put("grass1", tile_boulder_brown);
-		tiles.put("grass1", tile_boulder_grey);
-		tiles.put("grass1", tile_lamp_base);
-		tiles.put("grass1", tile_lamp_post);
-		tiles.put("grass1", tile_lamp);
+		tiles.put("0", tile_grass1);
+		tiles.put("9", tile_rock);
+		tiles.put("1", tile_boulder_brown);
+		tiles.put("2", tile_boulder_grey);
+		tiles.put("3", tile_lamp_base);
+		tiles.put("4", tile_lamp_post);
+		tiles.put("5", tile_lamp);
 	}
 }

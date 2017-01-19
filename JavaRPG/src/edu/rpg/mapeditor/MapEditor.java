@@ -3,12 +3,14 @@ package edu.rpg.mapeditor;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,8 +18,10 @@ import dym.rpg.Input;
 import dym.rpg.entities.Entity;
 import dym.rpg.graphics.Image;
 import dym.rpg.graphics.shading.Light;
+import dym.rpg.physics.Collision;
 import dym.rpg.physics.CollisionMap;
 import dym.rpg.physics.Vector2;
+import dym.rpg.physics.CollisionMap.CollisionType;
 import dym.rpg.tile.Tile;
 import dym.rpg.tile.TileMap;
 import dym.rpg.tile.Tiles;
@@ -29,6 +33,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	private static final long serialVersionUID = -5156583402135090840L;
 	private static Input i;
 	
+	
 	Image[] tileArray = {
 			Tiles.tile_grass1,
 			Tiles.tile_boulder_brown,
@@ -37,11 +42,24 @@ public class MapEditor extends JPanel implements MouseListener {
 			Tiles.tile_lamp_post,
 			Tiles.tile_lamp
 		};
+	String[] names = {
+			"grass1",
+			"boulder_brown",
+			"boulder_grey",
+			"lamp_base",
+			"lamp_post",
+			"lamp"
+	};
 	int index = 0;
 	JFrame frame;
 	int x = 0;
 	int y = 0;
-	boolean m1d = false; //as in "Mouse Button 1 down
+	JFileChooser chooser = new JFileChooser(); 
+	boolean m1d = false; //as in Mouse Button 1 down
+	boolean m2d = false; //as in Mouse Button 2 down
+	boolean m3d = false; //as in Mouse Button 3 down
+	boolean col = false; //as in Collisions
+	
 	
 	public TileMap tileMap;
 	public CollisionMap collisionMap;
@@ -84,6 +102,7 @@ public class MapEditor extends JPanel implements MouseListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		Iterator<Tile> iter = tileMap.mainTiles.iterator();
+		Iterator<Collision> itera = collisionMap.collisions.iterator();
 
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, 1280, 720);
@@ -95,31 +114,85 @@ public class MapEditor extends JPanel implements MouseListener {
 			g.drawLine(0, y, 1280, y);
 		}*/
 		tileMap.drawTilesEditor(g);
+		g.setColor(new Color(0xFF,0x00,0x00,0x7F));
+		for (Collision c : collisionMap.collisions) {
+			g.fillRect(c.x, c.y, 16, 16);
+		}
 		g.setColor(Color.CYAN);
 		x = 0;
 		y = 0;
 		try {
-		x = getMousePosition().x-getMousePosition().x%16;
-		y = getMousePosition().y-getMousePosition().y%16;
-		g.drawRect(x-1, y-1, 18, 18);
-		while (iter.hasNext()){
-			Tile t = iter.next();
-			if (m1d == true)
-				for (Tile r:tileMap.mainTiles) {
-					if (r.pos.x==x&&r.pos.y==y) {
-						tileMap.mainTiles.remove(r);
-						iter.remove();
+			x = getMousePosition().x;
+			x=x-x%16;
+			y = getMousePosition().y;
+			y=y-y%16;
+			g.drawRect(x-1, y-1, 18, 18);
+			if (col) {
+				if (m3d == true){
+	
+				}
+				if (m2d == true){
+					while (itera.hasNext()){
+						Collision u = itera.next();
+						if (u.x==x&&u.y==y) {
+							itera.remove();				
+						}
 					}
 				}
-				tileMap.mainTiles.add(new Tile(new Vector2(x,y), tileArray[index]));
-				
+				if (m1d == true){
+					while (itera.hasNext()){
+						Collision u = itera.next();
+						if (u.x==x&&u.y==y) {
+							itera.remove();				
+						}
+					}
+	
+					collisionMap.collisions.add(new Collision(CollisionType.SOLID, x, y));
+				}
+			} else {
+				if (m3d == true){
+					tileMap.mainTiles.add(new Tile(new Vector2(x,y), tileArray[index], names[index]));
+	
+				}
+				if (m2d == true){
+					while (iter.hasNext()){
+						Tile t = iter.next();
+						if (t.pos.x==x&&t.pos.y==y) {
+							iter.remove();				
+						}
+					}
+				}
+				if (m1d == true){
+					while (iter.hasNext()){
+						Tile t = iter.next();
+						if (t.pos.x==x&&t.pos.y==y) {
+							iter.remove();				
+						}
+					}
+	
+					tileMap.mainTiles.add(new Tile(new Vector2(x,y), tileArray[index], names[index]));
+				}
 			}
-		
-		
 		} 
 		catch (NullPointerException e) {
 			System.err.println("Null Mouse Pointer Exception");
 		}
+	}
+	public void save() {
+		chooser.showSaveDialog(frame);
+		try {
+            PrintWriter out= new PrintWriter(chooser.getSelectedFile().getPath());
+            for (Tile t :tileMap.mainTiles){
+            	out.println("t "+t.pos.x +" " +t.pos.y +" " +t.getName());
+            	
+            }
+            for (Collision c : collisionMap.collisions){
+            	out.println("c "+c.x +" " +c.y +" " +c.cType.toString());
+            }
+            out.close();
+        } catch (IOException e) {
+            System.out.println("Cannot open file.");
+        }
 	}
 	
 	public void tileSelect(){
@@ -141,6 +214,14 @@ public class MapEditor extends JPanel implements MouseListener {
 		if(Input.keysDown.contains(KeyEvent.VK_6)){
 			index = 5;
 		}
+		if(Input.keysDown.contains(KeyEvent.VK_ENTER)){
+			save();
+			Input.keysDown.remove((Object)KeyEvent.VK_ENTER);
+		}
+		if(Input.keysDown.contains(KeyEvent.VK_C)){
+			col = !col;
+			Input.keysDown.remove((Object)KeyEvent.VK_C);
+		}
 	/*	if (Input.keysDown.contains(KeyEvent.VK_LEFT)) {
 			if (index>0)
 			index--;
@@ -155,12 +236,27 @@ public class MapEditor extends JPanel implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		//place tileArray[index]; at pos x,y
-		m1d = true;
-		System.out.println(index);
+		if (e.getButton()==MouseEvent.BUTTON1){
+			m1d = true;
+			System.out.println(index);
+			System.out.println(tileArray);
+		}
+		
+		if (e.getButton()==MouseEvent.BUTTON3) {
+			m2d = true;
+
+		}
+		
+		if (e.getButton()==MouseEvent.BUTTON2){
+			m3d = true;
+		}
+		
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		m1d = false;
+		m2d = false;
+		m3d = false;
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {}
