@@ -16,6 +16,7 @@ import dym.rpg.graphics.Image;
 import dym.rpg.graphics.Sprite;
 import dym.rpg.graphics.staticImages.UIMainMenu;
 import dym.rpg.graphics.staticImages.UIMainMenu_ez_exit;
+import dym.rpg.graphics.staticImages.TreeIMG;
 import dym.rpg.graphics.staticImages.UIAreUSure;
 import dym.rpg.graphics.shading.Light;
 import dym.rpg.graphics.shading.LightingHandler;
@@ -49,6 +50,7 @@ public class Game extends JFrame {
 	public static Player p;
 
 	public static Image imgCharShadow = new Image(new File("res"+File.separator+"char"+File.separator+"char_shadow.png"));
+	public static TreeIMG tree = new TreeIMG();
 	
 	public static SprCharD sprCharD = new SprCharD();
 	public static SprCharU sprCharU = new SprCharU();

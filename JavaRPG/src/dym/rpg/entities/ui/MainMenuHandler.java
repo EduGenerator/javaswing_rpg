@@ -77,6 +77,10 @@ public class MainMenuHandler extends Entity {
 			SceneManager.gotoScene(selectionDestinations[(int)((arrowlocation-13)/120)]);
 			Input.keysDown.remove((Object)KeyEvent.VK_X);
 		}
+		if (Input.keysDown.contains(KeyEvent.VK_ESCAPE)){
+			System.exit(0);
+		
+		}
 	}
 	
 	@Override

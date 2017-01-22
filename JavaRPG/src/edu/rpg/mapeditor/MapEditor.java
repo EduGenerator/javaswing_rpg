@@ -196,6 +196,10 @@ public class MapEditor extends JPanel implements MouseListener {
 	}
 	
 	public void tileSelect(){
+		/*
+		 * DO NOT PUT ANYTHING ON C I SWEAR TO GOD YOU WILL BREAD EVERYTHING
+		 * ~a self note from Jordan
+		 */
 		if(Input.keysDown.contains(KeyEvent.VK_1)){
 			index = 0;
 		}
@@ -219,7 +223,7 @@ public class MapEditor extends JPanel implements MouseListener {
 			Input.keysDown.remove((Object)KeyEvent.VK_ENTER);
 		}
 		if(Input.keysDown.contains(KeyEvent.VK_C)){
-			col = !col;
+			col = !col;//ANYTHING
 			Input.keysDown.remove((Object)KeyEvent.VK_C);
 		}
 	/*	if (Input.keysDown.contains(KeyEvent.VK_LEFT)) {
